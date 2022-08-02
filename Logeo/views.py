@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm #form para crear los registros con el formulario default de django
-from .forms import UserRegisterForm #formlario personalizado sin mensajes de ayuda de django
+from .forms import UserRegisterForm #formulario personalizado sin mensajes de ayuda de django
 
 # Create your views here.
 def feed(request):
