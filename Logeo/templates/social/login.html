@@ -4,11 +4,13 @@
 {% if form.errors %}
 <h1>Favor de llenar los campos de la manera correcta</h1>
 {% endif %}
+
+
 <form class="form" method="post">
     {%csrf_token%}
     {{ form.as_p }}
 
-    <button type="submit" id="submit">Registrarse</button>
+    <button type="submit" id="submit">Login</button>
 
 </form>
 

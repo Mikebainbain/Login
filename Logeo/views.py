@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm #form para crear los registros 
+from django.contrib.auth.forms import UserCreationForm #form para crear los registros con el formulario default de django
+from .forms import UserRegisterForm #formlario personalizado sin mensajes de ayuda de django
 
 # Create your views here.
 def feed(request):
@@ -10,14 +11,15 @@ def feed(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
             messages.success(request, f'Usuario {username} creado')
+            return redirect('feed')
     else:
-        form = UserCreationForm()
-    context = {'form':form}     
+        form = UserRegisterForm()
+    context = {'form':form }     
     return render(request, 'social/register.html',context)
 
 def profile(request):
